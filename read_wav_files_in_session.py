@@ -26,35 +26,34 @@ from scipy.io import wavfile
 
 bigData = {} # currently file name is bigData. choose different name if needed
 
-maxlen = 0
-sessionNumbers = [1,2,3,4,5] #choose a session number to grab
-for sessionNumber in sessionNumbers:
-    sessionName = 'Session' + str(sessionNumber) + '_sorted/'
-    emotions = os.listdir(sessionName)
-    for emotion in emotions:        
-        wavFiles = os.listdir(sessionName + emotion)
-        
-        emotionData = {}
-        i = 0
-        for wavFile in wavFiles: 
-            fs, data = wavfile.read(sessionName + emotion + '/' + wavFile)
-    #        print fs, len(data)
-            if(len(data) > maxlen):
-                maxlen = len(data)
-            emotionData[i]= data
-            i += 1
-        bigData[emotion] = emotionData
-        
+# maxlen = 0
+# sessionNumbers = [1,2,3,4,5] #choose a session number to grab
+# for sessionNumber in sessionNumbers:
+sessionNumber = 1
+sessionName = 'Session' + str(sessionNumber) + '_sorted/'
+emotions = os.listdir(sessionName)
+for emotion in emotions:        
+    wavFiles = os.listdir(sessionName + emotion)
     
-    
-    # so now you can grab the emotions like this:
-    #   bigData.keys()
-    #
-    # and grab list of the files inside like this:
-    #   bigData['Anger'].keys()
-    #
-    # have fun because all the sentences are different length...
+    emotionData = {}
+    i = 0
+    for wavFile in wavFiles: 
+        fs, data = wavfile.read(sessionName + emotion + '/' + wavFile)
+#        print fs, len(data)
+        if(len(data) > maxlen):
+            maxlen = len(data)
+        emotionData[i]= data
+        i += 1
+    bigData[emotion] = emotionData
+
+# so now you can grab the emotions like this:
+#   bigData.keys()
+#
+# and grab list of the files inside like this:
+#   bigData['Anger'].keys()
+#
+# have fun because all the sentences are different length...
 
 
-print maxlen
+# print maxlen
 
