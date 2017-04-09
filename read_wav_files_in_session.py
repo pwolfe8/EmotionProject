@@ -26,12 +26,14 @@ from scipy.io import wavfile
 
 bigData = {} # currently file name is bigData. choose different name if needed
 
-# maxlen = 0
-# sessionNumbers = [1,2,3,4,5] #choose a session number to grab
-# for sessionNumber in sessionNumbers:
-sessionNumber = 1
-sessionName = 'Session' + str(sessionNumber) + '_sorted/'
+datasetPath = 'C:\EmotionDataset'
+sessionNumber =  2 #choose a session number to grab
+
+sessionName = datasetPath + 'Session' + str(sessionNumber) + '_sorted/'
 emotions = os.listdir(sessionName)
+
+# maxlen = 0
+# sessionNumbers = [1,2,3,4,5]
 for emotion in emotions:        
     wavFiles = os.listdir(sessionName + emotion)
     
@@ -56,4 +58,3 @@ for emotion in emotions:
 
 
 # print maxlen
-
